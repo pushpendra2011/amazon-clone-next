@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { HEADER_ITEMS } from "../consts/consts";
 import {
   MenuIcon,
   SearchIcon,
@@ -36,13 +37,31 @@ function Header() {
             <p className="font-extrabold md:text-sm">& Orders</p>
           </div>
           <div className="relative link flex items-center">
-            <span className="absolute top-0 right-0 md:right-10 h-4 w-4 text-black font-bold bg-yellow-400 text-center rounded-full">4</span>
+            <span className="absolute top-0 right-0 md:right-10 h-4 w-4 text-black font-bold bg-yellow-400 text-center rounded-full">
+              4
+            </span>
             <ShoppingCartIcon className="h-8" />
-            <p className="hidden md:inline font-extrabold md:text-sm mt-2">Basket</p>
+            <p className="hidden md:inline font-extrabold md:text-sm mt-2">
+              Basket
+            </p>
           </div>
         </div>
       </div>
-      <div></div>
+      <div className="flex items-center space-x-3 p-2 pl-6 bg-amazon_blue-light text-white text-sm">
+        <p className="link flex items-center">
+          <MenuIcon className="h-6 mr-1" />
+        </p>
+        {HEADER_ITEMS.map((item) => (
+          <p
+            key={item.id}
+            className={`link ${
+              !item.visibleOnMobile ? "hidden lg:inline-flex" : ""
+            }`}
+          >
+            {item.heading}
+          </p>
+        ))}
+      </div>
     </header>
   );
 }
